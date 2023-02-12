@@ -6,14 +6,14 @@ namespace tauri_api.Domain.Entity;
 [SugarTable("project")]
 public class ProjectEntity : BaseEntity
 {
-    public string? Name { get; set; }
+    public string Name { get; set; } = "";
 
     /// <summary>
     /// 本地文件路径
     /// </summary>
-    public string? DirPath { get; set; }
+    public string DirPath { get; set; } = "";
 
-    public string? Intro { get; set; }
+    public string Intro { get; set; } = "";
 
     /// <summary>
     /// 排序

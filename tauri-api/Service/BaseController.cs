@@ -15,11 +15,20 @@ public class BaseController<T> : ControllerBase where T : BaseEntity, new()
 
     [Route("add")]
     [HttpPost]
-    public ApiResult<T> Add([FromBody] T entity)
+    public virtual ApiResult<T> Add([FromBody] T entity)
     {
         Db.Insertable(entity).ExecuteReturnIdentity();
 
         return ApiResult<T>.Success(entity);
+    }
+
+    [HttpGet, Route("all")]
+    public virtual ApiResult<List<T>> SelectAll(ProjectEntity entity)
+    {
+        var list = Db.Queryable<T>()
+            .Where(it => it.DeleteMark == false)
+            .ToList();
+        return ApiResult<List<T>>.Success(list);
     }
 
 
@@ -27,14 +36,14 @@ public class BaseController<T> : ControllerBase where T : BaseEntity, new()
     // 只好和 Controller 代码放一起了
     [HttpGet]
     [Route("get")]
-    public ApiResult<T> GetById(int key)
+    public virtual ApiResult<T> GetById(int key)
     {
         return ApiResult<T>.Success(Db.Queryable<T>().First(it => it.Id == key));
     }
 
     [HttpPost]
     [Route("delete")]
-    public ApiResult<Integer> DeleteById(int key)
+    public virtual ApiResult<Integer> DeleteById(int key)
     {
         var i = new Integer(
             Db.Updateable<T>()
