@@ -6,7 +6,7 @@ namespace tauri_api.Core;
 /// 建表：
 /// https://www.donet5.com/home/doc?masterId=1&typeId=1206  4.1 特性列表
 /// </summary>
-public class SqlSugarHelper //不能是泛型类
+public static class SqlSugarHelper //不能是泛型类
 {
     static readonly string dbName = Path.Combine(Environment.CurrentDirectory, "SampleDB.db");
 

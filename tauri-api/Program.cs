@@ -1,4 +1,5 @@
 using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using tauri_api.Core;
 using tauri_api.Domain.Entity;
@@ -8,11 +9,26 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers().AddNewtonsoftJson(
-    options => { options.SerializerSettings.ContractResolver = new DefaultContractResolver(); }
+    options =>
+    {
+        options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+        options.SerializerSettings.Formatting = Formatting.Indented;
+    }
 );
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddCors(opt =>
+{
+    opt.AddPolicy(name: "AllowOrigin",
+        corsBuilder =>
+        {
+            corsBuilder.WithOrigins("*")
+                .AllowAnyHeader()
+                .AllowAnyMethod();
+        }
+    );
+});
 
 var app = builder.Build();
 
@@ -31,6 +47,7 @@ SqlSugarHelper.Db.CodeFirst.InitTables(
     typeof(ProjectEntity)
 );
 
+app.UseCors("AllowOrigin");
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
