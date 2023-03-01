@@ -25,7 +25,7 @@ public class ProjectEntity : BaseEntity
     /// 执行状态
     /// </summary>
     [SugarColumn(DefaultValue = "0", IsOnlyIgnoreUpdate = true)]
-    public ProjectStateEnum State { get; set; } = ProjectStateEnum.Default;
+    public ProjectStateEnum State { get; set; } = ProjectStateEnum.Primary;
 
     /// <summary>
     /// 执行时间

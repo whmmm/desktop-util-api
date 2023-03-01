@@ -4,6 +4,10 @@ using tauri_api.Domain.Entity;
 
 namespace tauri_api.Service;
 
+/// <summary>
+/// 不推荐使用
+/// </summary>
+/// <typeparam name="T"></typeparam>
 public class BaseService<T> where T : BaseEntity, new()
 {
     protected readonly SqlSugarScope db = SqlSugarHelper.Db;

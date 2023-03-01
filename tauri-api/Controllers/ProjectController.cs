@@ -22,6 +22,8 @@ public class ProjectController : BaseController<ProjectEntity>
 
         var list = Db.Queryable<ProjectEntity>()
             .Where(exp.ToExpression())
+            .OrderByDescending(it=>it.Sort)
+            .OrderByDescending(it=>it.Id)
             .ToList();
 
         return ApiResult<List<ProjectEntity>>.Success(list);
