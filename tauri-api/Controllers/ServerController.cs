@@ -6,13 +6,13 @@ namespace tauri_api.Controllers;
 [Route("[controller]")]
 public class ServerController : ControllerBase
 {
-    [HttpGet,Route("json")]
+    [HttpGet, Route("json")]
     public string Json()
     {
         return "hello world";
     }
 
-    [HttpGet,Route("test")]
+    [HttpGet, Route("test")]
     public string Test()
     {
         return "test";

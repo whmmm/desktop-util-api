@@ -2,4 +2,5 @@
 
 public class BuildInfo
 {
+    public List<string> Cmd { set; get; }
 }

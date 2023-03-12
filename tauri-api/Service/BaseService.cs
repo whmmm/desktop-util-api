@@ -13,12 +13,12 @@ public class BaseService<T> where T : BaseEntity, new()
     protected readonly SqlSugarScope db = SqlSugarHelper.Db;
 
 
-    public T GetById(int key)
+    public virtual T GetById(int key)
     {
         return db.Queryable<T>().First(it => it.Id == key);
     }
 
-    public int DeleteById(int key)
+    public virtual int DeleteById(int key)
     {
         return db.Updateable<T>()
             .SetColumns("delete_mark", true)

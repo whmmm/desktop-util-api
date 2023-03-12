@@ -4,7 +4,6 @@ namespace tauri_api.Domain.Entity;
 
 public class BaseEntity
 {
-    
     /// <summary>
     /// 主键 id
     /// </summary>
@@ -37,5 +36,4 @@ public class BaseEntity
         DefaultValue = "false",
         IsOnlyIgnoreUpdate = true)]
     public bool DeleteMark { get; set; } = false;
-
 }

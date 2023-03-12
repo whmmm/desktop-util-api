@@ -1,6 +1,6 @@
-using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using tauri_api;
 using tauri_api.Core;
 using tauri_api.Domain.Entity;
 
@@ -30,6 +30,8 @@ builder.Services.AddCors(opt =>
     );
 });
 
+BuilderConfigure.Configure(builder);
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -53,5 +55,5 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
-
+AppConfigure.Configure(app);
 app.Run();
